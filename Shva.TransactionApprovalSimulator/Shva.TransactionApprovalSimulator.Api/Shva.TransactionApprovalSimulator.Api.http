@@ -1,0 +1,6 @@
+@Shva.TransactionApprovalSimulator.Api_HostAddress = http://localhost:5234
+
+GET {{Shva.TransactionApprovalSimulator.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
