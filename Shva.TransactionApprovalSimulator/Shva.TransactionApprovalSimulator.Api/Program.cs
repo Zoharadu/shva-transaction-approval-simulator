@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Shva.TransactionApprovalSimulator.Api.Middleware;
 using Shva.TransactionApprovalSimulator.Application.Interfaces;
 using Shva.TransactionApprovalSimulator.Application.Services;
 using Shva.TransactionApprovalSimulator.Infrastructure.Persistence;
@@ -19,6 +20,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
