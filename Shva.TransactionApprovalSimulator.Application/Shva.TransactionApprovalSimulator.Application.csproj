@@ -13,4 +13,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Shva.TransactionApprovalSimulator.Domain\Shva.TransactionApprovalSimulator.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
