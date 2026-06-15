@@ -20,4 +20,9 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Shva.TransactionApprovalSimulator.Application\Shva.TransactionApprovalSimulator.Application.csproj" />
+    <ProjectReference Include="..\Shva.TransactionApprovalSimulator.Domain\Shva.TransactionApprovalSimulator.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
