@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Shva.TransactionApprovalSimulator.Application.Interfaces;
+using Shva.TransactionApprovalSimulator.Application.Services;
 using Shva.TransactionApprovalSimulator.Infrastructure.Persistence;
 using Shva.TransactionApprovalSimulator.Infrastructure.Repositories;
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
