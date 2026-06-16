@@ -1,5 +1,11 @@
 export type Region = 'Israel' | 'France' | 'USA' | 'Japan'
 
+export type ApprovedTransaction = {
+  id: number
+  time: string
+  region: Region
+}
+
 export const TransactionStatus = {
   Approved: 0,
   Rejected: 1,
