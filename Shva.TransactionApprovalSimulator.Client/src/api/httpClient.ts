@@ -1,6 +1,13 @@
 import type { ApiErrorResponse } from '../types/transactions'
+import { clearAuthToken, getAuthToken } from './authToken'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
+let unauthorizedHandler: (() => void) | undefined
+
+export const setUnauthorizedHandler = (handler: (() => void) | undefined) => {
+  unauthorizedHandler = handler
+}
 
 const getApiBaseUrl = () => {
   if (!API_BASE_URL) {
@@ -49,9 +56,25 @@ const formatApiError = (fallback: string, errorResponse?: ApiErrorResponse) => {
   return fallback
 }
 
+const buildRequestHeaders = (headers?: HeadersInit) => {
+  const requestHeaders = new Headers(headers)
+  const token = getAuthToken()
+
+  if (token && !requestHeaders.has('Authorization')) {
+    requestHeaders.set('Authorization', `Bearer ${token}`)
+  }
+
+  return requestHeaders
+}
+
 const ensureOkResponse = async (response: Response) => {
   if (response.ok) {
     return
+  }
+
+  if (response.status === 401) {
+    clearAuthToken()
+    unauthorizedHandler?.()
   }
 
   const fallback = `Request failed with status ${response.status}${response.statusText ? ` ${response.statusText}` : ''}.`
@@ -61,7 +84,10 @@ const ensureOkResponse = async (response: Response) => {
 }
 
 export const apiRequest = async <T>(path: string, init?: RequestInit): Promise<T> => {
-  const response = await fetch(`${getApiBaseUrl()}${path}`, init)
+  const response = await fetch(`${getApiBaseUrl()}${path}`, {
+    ...init,
+    headers: buildRequestHeaders(init?.headers),
+  })
 
   await ensureOkResponse(response)
 

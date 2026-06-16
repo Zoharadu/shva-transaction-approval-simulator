@@ -1,11 +1,22 @@
 import { LanguageToggle } from './LanguageToggle'
 import { ShvaLogo } from './ShvaLogo'
 
-export function Header() {
+interface HeaderProps {
+  onLogout?: () => void
+}
+
+export function Header({ onLogout }: HeaderProps) {
   return (
     <header className="app-header">
       <ShvaLogo />
-      <LanguageToggle />
+      <div className="header-actions">
+        <LanguageToggle />
+        {onLogout && (
+          <button className="logout-button" type="button" onClick={onLogout}>
+            Logout
+          </button>
+        )}
+      </div>
     </header>
   )
 }

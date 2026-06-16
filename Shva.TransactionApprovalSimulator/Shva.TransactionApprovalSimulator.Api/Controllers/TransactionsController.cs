@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shva.TransactionApprovalSimulator.Application.DTOs.Requests;
 using Shva.TransactionApprovalSimulator.Application.DTOs.Responses;
@@ -6,6 +7,7 @@ using Shva.TransactionApprovalSimulator.Application.Interfaces;
 namespace Shva.TransactionApprovalSimulator.Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/transactions")]
 public class TransactionsController : ControllerBase
 {

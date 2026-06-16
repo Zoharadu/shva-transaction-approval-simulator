@@ -14,6 +14,36 @@
   border-bottom: 1px solid #eceaf1;
 }
 
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logout-button {
+  height: 38px;
+  padding: 0 16px;
+  color: #5d3f9b;
+  background: #ffffff;
+  border: 1px solid #d9cdea;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.logout-button:hover {
+  background: #f7f2ff;
+  border-color: #bfaee1;
+  box-shadow: 0 14px 30px rgba(83, 53, 132, 0.13);
+  transform: translateY(-1px);
+}
+
 .shva-logo {
   display: inline-flex;
   align-items: center;
@@ -65,6 +95,109 @@ button {
   color: #ffffff;
   background: #241f2f;
   box-shadow: 0 6px 16px rgba(36, 31, 47, 0.16);
+}
+
+.login-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(111, 66, 213, 0.14), transparent 28%),
+    linear-gradient(135deg, #fbf9ff 0%, #ffffff 62%, #f6f1ff 100%);
+}
+
+.login-card {
+  display: grid;
+  gap: 24px;
+  width: min(100%, 420px);
+  padding: 34px;
+  background: #ffffff;
+  border: 1px solid #e8e2f2;
+  border-radius: 28px;
+  box-shadow: 0 28px 65px rgba(52, 42, 70, 0.12);
+}
+
+.login-eyebrow,
+.login-hint,
+.login-error {
+  margin: 0;
+}
+
+.login-eyebrow {
+  color: #5d3f9b;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.login-card h1 {
+  margin: 8px 0 0;
+  color: #1f1a2a;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.login-hint {
+  margin-top: 8px;
+  color: #746a82;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.login-form {
+  display: grid;
+  gap: 16px;
+}
+
+.login-form label {
+  display: grid;
+  gap: 8px;
+  color: #352d42;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.login-form input {
+  height: 46px;
+  padding: 0 14px;
+  color: #211c2b;
+  background: #ffffff;
+  border: 1px solid #d9d3e4;
+  border-radius: 13px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.login-form input:focus {
+  border-color: #6f42d5;
+  box-shadow: 0 0 0 4px rgba(111, 66, 213, 0.12);
+  outline: none;
+}
+
+.login-error {
+  color: #8a2d3a;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.login-form button {
+  height: 46px;
+  color: #ffffff;
+  background: #5d3f9b;
+  border: 0;
+  border-radius: 13px;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.login-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
 }
 
 .simulator-main {

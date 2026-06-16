@@ -1,4 +1,7 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Shva.TransactionApprovalSimulator.Api.Middleware;
 using Shva.TransactionApprovalSimulator.Application.Interfaces;
 using Shva.TransactionApprovalSimulator.Application.Services;
@@ -10,6 +13,24 @@ const string ReactDevelopmentCorsPolicy = "ReactDevelopmentCorsPolicy";
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+var jwtKey = jwtSettings["Key"] ?? throw new InvalidOperationException("Missing JwtSettings:Key configuration.");
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSettings["Issuer"],
+            ValidAudience = jwtSettings["Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+        };
+    });
 
 builder.Services.AddCors(options =>
 {
@@ -46,6 +67,7 @@ app.UseHttpsRedirection();
 
 app.UseCors(ReactDevelopmentCorsPolicy);
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
