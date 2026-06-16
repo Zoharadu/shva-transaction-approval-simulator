@@ -2,8 +2,12 @@ import { useState } from 'react'
 import { SUPPORTED_REGIONS } from '../../constants/regions'
 import type { Region } from '../../types/transactions'
 
-export function TimezoneSelect() {
-  const [selectedRegion, setSelectedRegion] = useState<Region>('France')
+type TimezoneSelectProps = {
+  selectedRegion: Region
+  onRegionChange: (region: Region) => void
+}
+
+export function TimezoneSelect({ selectedRegion, onRegionChange }: TimezoneSelectProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -25,7 +29,7 @@ export function TimezoneSelect() {
               <button
                 type="button"
                 onClick={() => {
-                  setSelectedRegion(region)
+                  onRegionChange(region)
                   setIsOpen(false)
                 }}
               >

@@ -1,4 +1,4 @@
-import shvaLogo from '../../assets/shva-logo.png'
+import shvaLogo from '../../assets/shva logo.svg'
 
 export function ShvaLogo() {
   return (

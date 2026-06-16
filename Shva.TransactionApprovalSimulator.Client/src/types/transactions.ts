@@ -1,9 +1,9 @@
 export type Region = 'Israel' | 'France' | 'USA' | 'Japan'
 
 export type ApprovedTransaction = {
-  id: number
+  id: string
   time: string
-  region: Region
+  region: string
 }
 
 export const TransactionStatus = {
@@ -14,25 +14,22 @@ export const TransactionStatus = {
 export type TransactionStatus = (typeof TransactionStatus)[keyof typeof TransactionStatus]
 
 export interface SubmitTransactionRequest {
-  cardNumber: string
-  expirationMonth: number
-  expirationYear: number
-  cvv: string
-  amount: number
   region: Region
+  submittedDateTime: string
 }
 
 export interface TransactionResponse {
-  transactionId: string
+  id: string
+  region: string
+  submittedDateTimeUtc: string
+  localDateTime: string
   status: TransactionStatus
-  message: string
-  amount: number
-  region: Region
 }
 
-export interface ApprovedTransactionResponse extends TransactionResponse {
-  status: typeof TransactionStatus.Approved
-  approvedAt: string
+export interface ApprovedTransactionResponse {
+  id: string
+  region: string
+  localDateTime: string
 }
 
 export interface ApiErrorResponse {

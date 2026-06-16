@@ -9,7 +9,6 @@ const string ReactDevelopmentCorsPolicy = "ReactDevelopmentCorsPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>

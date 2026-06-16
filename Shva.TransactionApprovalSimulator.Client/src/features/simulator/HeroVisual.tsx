@@ -1,3 +1,5 @@
+import phoneImage from '../../assets/Rectangle.svg'
+
 export function HeroVisual() {
   return (
     <div className="hero-visual" aria-hidden="true">
@@ -5,8 +7,13 @@ export function HeroVisual() {
       <div className="visual-line line-two" />
       <div className="visual-line line-three" />
       <div className="visual-text">
-        <strong>תשלום מאובטח</strong>
-        <span>העסקה שלך מוגנת ומאושרת</span>
+        <strong>
+          רשת התשלומים
+          <br />
+          המאובטחת, היציבה
+          <br />
+          והמתקדמת בישראל
+        </strong>
       </div>
       <div className="receipt-stack">
         <div className="receipt-card card-back" />
@@ -16,13 +23,7 @@ export function HeroVisual() {
           <span />
         </div>
       </div>
-      <div className="phone-frame">
-        <div className="phone-notch" />
-        <div className="phone-logo">shva</div>
-        <div className="phone-check" />
-        <div className="phone-line" />
-        <div className="phone-line short" />
-      </div>
+      <img className="phone-asset" src={phoneImage} alt="" />
     </div>
   )
 }
