@@ -21,15 +21,8 @@ public class TransactionsController : ControllerBase
         [FromBody] SubmitTransactionRequest request,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            var response = await _transactionService.SubmitTransactionAsync(request, cancellationToken);
-            return Ok(response);
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        var response = await _transactionService.SubmitTransactionAsync(request, cancellationToken);
+        return Ok(response);
     }
 
     [HttpGet("approved")]
